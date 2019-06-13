@@ -93,7 +93,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	SetMainWindowText( "Aiueo" );
 
 	ChangeWindowMode( TRUE );
-	SetGraphMode( 640, 480, 32 );
+	SetGraphMode( 512, 448, 32 );
 	SetDrawScreen( DX_SCREEN_BACK );
 
 	/*****          リフレッシュレート確認            *****/
@@ -193,7 +193,10 @@ void GameInit() {
 }
 
 void GameMain() {
+
 	DrawFormatString( 0, 0, 0xffffff, "MAIN" );
+
+	DrawStage();
 
 	if ( opt.Kflg & PAD_INPUT_10 ) {
 		GAMESTATE = GAME_TITLE;
@@ -206,10 +209,12 @@ void DrawEnd() {
 
 void DrawStage() {
 	
-	//
-	for ( int StageX = 0; StageX < 20; StageX++ ) {
+	//ライン描画
+	for ( int StageX = 0; StageX < 16; StageX++ ) {
 		DrawLine( StageX * _MASS_X, 0, StageX * _MASS_X, 480, 0xffffff );
 	}
-	for ( int StageY = 0; StageY < 10 ; StageY++ ) {
+	for ( int StageY = 0; StageY < 14 ; StageY++ ) {
 		DrawLine( 0, StageY * _MASS_Y, 640, StageY * _MASS_Y, 0xffffff );
 	}
+
+}
