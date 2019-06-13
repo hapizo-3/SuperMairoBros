@@ -1,0 +1,14 @@
+﻿2019/06/13 15:00:59 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "D:\GameMake\SuperMairoBros\SuperMairoBros.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"D:\DxLib_VC\プロジェクトに追加すべきファイル_VC用" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
+         Source.cpp
+     1>d:\gamemake\supermairobros\source.cpp(45): warning C4091: 'typedef ' : 変数が何も宣言されていないときは、'PICTURE' の左辺を無視します。
+     1>d:\gamemake\supermairobros\source.cpp(51): warning C4091: 'typedef ' : 変数が何も宣言されていないときは、'SOUND' の左辺を無視します。
+     1>d:\gamemake\supermairobros\source.cpp(60): warning C4091: 'typedef ' : 変数が何も宣言されていないときは、'FRAMERATE_CONTROL' の左辺を無視します。
+     1>d:\gamemake\supermairobros\source.cpp(216): fatal error C1075: 左側 中かっこ '{' に対応するものが 'd:\gamemake\supermairobros\source.cpp(207)' で見つかる前に EOF が検出されました。
+     1>プロジェクト "D:\GameMake\SuperMairoBros\SuperMairoBros.vcxproj" (Build ターゲット) のビルドが終了しました -- 失敗。
+
+ビルドに失敗しました。
+
+経過時間 00:00:01.10
