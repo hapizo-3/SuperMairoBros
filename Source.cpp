@@ -3,6 +3,13 @@
 //デバッグモード
 #define _DEBUGMODE
 
+//ウィンドウモード変更
+//(基本はウィンドウモード)
+//(画面サイズ変更したい場合は)
+//(#define _WINDOWMODE 1をコメントアウトする)
+#define _WINDOWMODE	0
+#define _WINDOWMODE	1
+
 //フレームレート定数( 60 )
 #define	_FRAMERATE_60	60
 
@@ -92,7 +99,7 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	GAMESTATE = GAME_TITLE;
 	SetMainWindowText( "Aiueo" );
 
-	ChangeWindowMode( TRUE );
+	ChangeWindowMode( _WINDOWMODE );
 	SetGraphMode( 512, 448, 32 );
 	SetDrawScreen( DX_SCREEN_BACK );
 
