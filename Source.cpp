@@ -1,3 +1,4 @@
+//sourceex
 #include "DxLib.h"
 
 //デバッグモード
