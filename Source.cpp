@@ -214,3 +214,5 @@ void DrawStage() {
 	for ( int StageY = 0; StageY < 10 ; StageY++ ) {
 		DrawLine( 0, StageY * _MASS_Y, 640, StageY * _MASS_Y, 0xffffff );
 	}
+
+}
