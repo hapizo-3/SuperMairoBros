@@ -8,10 +8,13 @@
 //(画面サイズ変更したい場合は)
 //(#define _WINDOWMODE 1をコメントアウトする)
 #define _WINDOWMODE	0
-#define _WINDOWMODE	1
+//#define _WINDOWMODE	1
 
 //フレームレート定数( 60 )
 #define	_FRAMERATE_60	60
+
+#define _MAPX	15
+#define _MAPY	16
 
 /*****      フォントサイズ定数      *****/
 #define _FONTSIZE_SS		10	//フォントSSサイズ
@@ -77,6 +80,15 @@ typedef struct OPERATE {
 
 OPERATE opt;
 
+typedef struct STAGE {
+	int LINENUMBER;
+	int Mapch[ 1000 ];
+	int Stage[ _MAPY ][ _MAPX ];
+} STAGE;
+
+STAGE Stage1_MAIN;
+STAGE Stage1_UG;
+
 /****************************************************/
 /*****											*****/
 /*****			  関数プロトタイプ宣言			*****/
@@ -94,13 +106,15 @@ void GameMain();
 void DrawStage();
 void DrawEnd();
 
+int LoadMap();
+
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow ) {
 
 	GAMESTATE = GAME_TITLE;
 	SetMainWindowText( "Aiueo" );
 
 	ChangeWindowMode( _WINDOWMODE );
-	SetGraphMode( 512, 448, 32 );
+	SetGraphMode( 512, 480, 32 );
 	SetDrawScreen( DX_SCREEN_BACK );
 
 	/*****          リフレッシュレート確認            *****/
@@ -216,12 +230,17 @@ void DrawEnd() {
 
 void DrawStage() {
 	
-	//ライン描画
+	//ライン描画X
 	for ( int StageX = 0; StageX < 16; StageX++ ) {
 		DrawLine( StageX * _MASS_X, 0, StageX * _MASS_X, 480, 0xffffff );
 	}
-	for ( int StageY = 0; StageY < 14 ; StageY++ ) {
+	//ライン描画Y
+	for ( int StageY = 0; StageY < 15 ; StageY++ ) {
 		DrawLine( 0, StageY * _MASS_Y, 640, StageY * _MASS_Y, 0xffffff );
 	}
 
+}
+
+int LoadMap() {
+	
 }
