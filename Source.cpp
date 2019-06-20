@@ -5,10 +5,8 @@
 
 //ウィンドウモード変更
 //(基本はウィンドウモード)
-//(画面サイズ変更したい場合は)
-//(#define _WINDOWMODE 1をコメントアウトする)
+//0が全画面モード、1がウィンドウモード
 #define _WINDOWMODE	0
-#define _WINDOWMODE	1
 
 //フレームレート定数( 60 )
 #define	_FRAMERATE_60	60
