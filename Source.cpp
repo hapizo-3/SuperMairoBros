@@ -297,10 +297,21 @@ void DrawPlayer() {
 	}
 
 	//ジャンプ処理
-	if ( opt.Kflg & PAD_INPUT_A ) {
-		if ( JumpFrame <= ) {
+	if( JumpFrame == 0 && opt.Kflg & PAD_INPUT_A ) {
+		JumpFrame++;
+	}
+	if ( JumpFrame > 0 ) {
+		if ( JumpFrame < 64 ) {
 			JumpFrame += 1;
-			Player.PlayerY -= ;
+			Player.PlayerY -= 2;
+		}
+		if ( JumpFrame >= 64 ) {
+			JumpFrame += 1;
+			Player.PlayerY += 2;
+		}
+
+		if ( JumpFrame == 127 ) {
+			JumpFrame = 0;
 		}
 	}
 
@@ -322,11 +333,14 @@ void DrawPlayer() {
 #endif
 
 	DrawRotaGraph( Player.PlayerX, Player.PlayerY, 1.0f, 0, Pic.Player[ 0 ], TRUE );
+
 }
 
 int LoadImages() {
 
+	//ブロック読込
 	if ( LoadDivGraph( "images/Block.png", 9, 9, 1, 32, 32, Pic.StageBlock + 1 ) == -1 )	return -1;
+	//キャラクター読込
 	if ( LoadDivGraph( "images/mario_chara.png", 15, 5, 3, 32, 32, Pic.Player ) == -1 )	return -1;
 
 	return TRUE;
