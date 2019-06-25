@@ -43,9 +43,10 @@ typedef enum GAME_MODE {
 /*****      画像構造体      *****/
 typedef struct PICTURE {
 	int Picture;
+	//int player[1];
 };
 PICTURE Pic;	//画像構造体宣言
-
+int player[1];
 /*****      画像構造体      *****/
 typedef struct SOUND {
 	int Sound;
@@ -88,6 +89,8 @@ void GameMain();
 void DrawStage();
 void DrawEnd();
 
+int LoadImages();
+
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow ) {
 
 	GAMESTATE = GAME_TITLE;
@@ -101,8 +104,9 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	hdc = GetDC( GetMainWindowHandle() ) ;	// デバイスコンテキストの取得
 	RefreshRate = GetDeviceCaps( hdc, VREFRESH ) ;	// リフレッシュレートの取得
 	ReleaseDC( GetMainWindowHandle(), hdc ) ;	// デバイスコンテキストの解放
-
+	
 	if ( DxLib_Init() == -1 )	return -1;
+	if ( LoadImages() == -1 ) return -1; // 画像読込み関数を呼び出し
 
 	while ( ProcessMessage() == 0 && ClearDrawScreen() == 0 && GAMESTATE != 99 ) {
 	
@@ -139,6 +143,16 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 	return 0;
 
 }
+
+
+
+int LoadImages(){
+	if((player[0]= LoadGraph("Images/mario_n.png")) == -1) return -1;
+
+	return 0;
+}
+
+
 
 /******　　　　　　　フレーム数制御関数         ******/
 static bool FR_Update( ) {
@@ -194,8 +208,8 @@ void GameInit() {
 }
 
 void GameMain() {
-	DrawFormatString( 0, 0, 0xffffff, "MAIN" );
-
+	DrawFormatString( 310, 230, 0xffffff, "MAIN" );
+	DrawGraph(100,400,player[0],TRUE);
 	if ( opt.Kflg & PAD_INPUT_10 ) {
 		GAMESTATE = GAME_TITLE;
 	}
