@@ -66,6 +66,7 @@ SOUND Sound;		//音楽構造体宣言
 typedef struct FRAMERATE_CONTROL {
 	int mStartTime;
 	int mCount;
+	int FrameCount;
 	float mFps;
 	int ReFreshRateState;
 };
@@ -198,6 +199,7 @@ static bool FR_Update( ) {
 		FR_Control.mStartTime = t;
 	}
 	FR_Control.mCount++;
+	FR_Control.FrameCount++;
 	return true;
 }
 
@@ -205,7 +207,7 @@ static bool FR_Update( ) {
 static void FR_Draw( ) {
 	
 	SetFontSize( _FONTSIZE_S );
-	DrawFormatString( 0, 0, 0xff0000, "%.1f", FR_Control.mFps );
+	DrawFormatString( 0, 0, 0xff0000, "%d", FR_Control.FrameCount );
 	DrawFormatString( 0, 20, 0xff0000, "%d", RefreshRate );
 
 }
@@ -284,25 +286,40 @@ void DrawStage() {
 
 void DrawPlayer() {
 
+	//ジャンプ時のフレームカウント
+	static int JumpFrame = 0;
+
+	//動く処理
 	if ( Player.PlayerX <= ( 14 * _MASS_X + _MASS_HALF ) && opt.NowK & PAD_INPUT_RIGHT ) {
-		Player.PlayerX += ( 1 + Player.PSpeed );
+		Player.PlayerX += ( 3 + ( int )Player.PSpeed );
 	} else if ( Player.PlayerX >= ( 2 * _MASS_X + _MASS_HALF ) && opt.NowK & PAD_INPUT_LEFT ) {
-		Player.PlayerX -= ( 1 + Player.PSpeed );
+		Player.PlayerX -= ( 3 + ( int )Player.PSpeed );
 	}
 
-	if ( opt.OldK != 0 ) {
-		if ( Player.PSpeed <= 2.0f ) {
-			Player.PSpeed += 0.1f;
-		}
-	} 
-	if ( opt.OldK == 0 && Player.PSpeed >= 0.0f ) {
-		if ( Player.PSpeed > 0.0f ) {
-			Player.PSpeed -= 0.03f;
+	//ジャンプ処理
+	if ( opt.Kflg & PAD_INPUT_A ) {
+		if ( JumpFrame <= ) {
+			JumpFrame += 1;
+			Player.PlayerY -= ;
 		}
 	}
 
+	//加速度設定
+	//if ( opt.OldK != 0 ) {
+	//	if ( Player.PSpeed <= 2.0f ) {
+	//		Player.PSpeed += 0.1f;
+	//	}
+	//} 
+	//if ( opt.OldK == 0 && Player.PSpeed >= 0.0f ) {
+	//	if ( Player.PSpeed > 0.0f ) {
+	//		Player.PSpeed -= 0.03f;
+	//	}
+	//}
+
+#ifdef _DEBUGMODE
 	DrawFormatString( 0, 50, 0xff0000, "%d", opt.OldK );
 	DrawFormatString( 0, 80, 0xff0000, "%d", opt.NowK );
+#endif
 
 	DrawRotaGraph( Player.PlayerX, Player.PlayerY, 1.0f, 0, Pic.Player[ 0 ], TRUE );
 }
