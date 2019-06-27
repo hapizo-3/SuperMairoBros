@@ -49,6 +49,10 @@ typedef enum GAME_MODE {
 	END = 99			//エンド
 };
 
+/*****      ゲームモード列挙体      *****/
+//typedef enum BLOCK_NUMBER {
+	
+
 /*****      画像構造体      *****/
 typedef struct PICTURE {
 	int Player[ 15 ];
@@ -295,6 +299,9 @@ void DrawPlayer() {
 	} else if ( Player.PlayerX >= ( 2 * _MASS_X + _MASS_HALF ) && opt.NowK & PAD_INPUT_LEFT ) {
 		Player.PlayerX -= ( 3 + ( int )Player.PSpeed );
 	}
+
+	//重力処理
+	//if ( 
 
 	//ジャンプ処理
 	if( JumpFrame == 0 && opt.Kflg & PAD_INPUT_A ) {
